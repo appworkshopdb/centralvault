@@ -350,7 +350,20 @@ function wireVaultEvents(): void {
   document.querySelectorAll<HTMLButtonElement>("[data-category]").forEach((button) => button.addEventListener("click", () => {
     activeCategory = button.dataset.category || "all"; renderVault();
   }));
-  document.querySelector<HTMLInputElement>("#search")?.addEventListener("input", (event) => { query = (event.target as HTMLInputElement).value; renderVault(); document.querySelector<HTMLInputElement>("#search")?.focus(); });
+  document.querySelector<HTMLInputElement>("#search")?.addEventListener("input", (event) => {
+    // renderVault() ersetzt das Suchfeld, deshalb muss die Cursorposition
+    // gemerkt und danach wiederhergestellt werden – sonst springt der Cursor
+    // an den Anfang und die Eingabe erscheint rückwärts.
+    const input = event.target as HTMLInputElement;
+    const caret = input.selectionStart ?? input.value.length;
+    query = input.value;
+    renderVault();
+    const next = document.querySelector<HTMLInputElement>("#search");
+    if (next) {
+      next.focus();
+      next.setSelectionRange(caret, caret);
+    }
+  });
   document.querySelector("#add-entry")?.addEventListener("click", () => openEntryEditor());
   document.querySelector("#settings")?.addEventListener("click", openSettings);
   document.querySelector("#lock")?.addEventListener("click", lockVault);
