@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.wrangler/
+worker/wrangler.toml
+upload/
+*export*.json
+Vault_Export.json
+bitwarden_export*.json
