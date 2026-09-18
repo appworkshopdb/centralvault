@@ -1,0 +1,13 @@
+{
+  "name": "Central Vault",
+  "short_name": "Vault",
+  "description": "Privater, Ende-zu-Ende-verschlüsselter Passwort-Tresor",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f1eb",
+  "theme_color": "#17130f",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
